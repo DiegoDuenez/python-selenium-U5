@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-
 class Interface:
 
     ID = False
@@ -31,8 +30,8 @@ class Interface:
         self.wait = WebDriverWait(self.driver, time)
         return self
 
-    '''def util(self, method):
-        self.wait = self.wait.util(method)
+    '''def until(self, method):
+        self.wait = self.wait.until(method)
         return self'''
 
     def element(self, method, type, html):
@@ -42,20 +41,36 @@ class Interface:
             type = By.ID 
         if type == 'ID':
             type = By.TAG_NAME 
-        self.wait = self.wait.util(method(type, html))
+        self.wait = self.wait.until(method(type, html))
 
 
     def css(self):
         self.CSS = True
         return self
-    
-    def clickable(self, html):
-        if self.CSS:
-             self.wait = self.wait.util(EC.element_to_be_clickable(By.CSS_SELECTOR, html))
-        
+
+    def id(self):
+        self.ID = True
         return self
     
-    #def util
+    def keys(self, html, keys):
+        if self.CSS:
+            self.wait = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, html))).send_keys(keys)
+
+        return self.wait
+
+    def click(self, html):
+        if self.CSS:
+            self.wait = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, html))).click()
+
+        return self.wait
+
+    def text(self, html):
+        if self.CSS:
+            self.wait = self.wait.until(EC.element_to_be_clickable(By.CSS_SELECTOR, html)).text
+            return self.wait
+         
+    
+    #def until
     
     def open(self):
         self.driver.get(self.site)
