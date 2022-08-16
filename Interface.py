@@ -37,9 +37,9 @@ class Interface:
     def element(self, method, type, html):
         if type == 'CSS':
             type = By.CSS_SELECTOR
-        if type == 'ID':
+        elif type == 'ID':
             type = By.ID 
-        if type == 'ID':
+        elif type == 'ID':
             type = By.TAG_NAME 
         self.wait = self.wait.until(method(type, html))
 
