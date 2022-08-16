@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
+    <title>Selenium</title>
+</head>
+<body>
+
+    <div class="container p-5" style="width: 50%;">
+        <form method="post" action="app/index.php">
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" id="correo" name="correo">
+                <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+            </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="mb-3">
+                <label for="celular" class="form-label">Número celular</label>
+                <input type="number" class="form-control" id="celular" name="numero">
+            </div>
+            <div class="mb-3">
+                <label for="pais" class="form-label">País</label>
+                <select class="form-select" id="pais" name="pais">
+                    <option selected>Seleccionar país</option>
+                    <option value="Mexico">México</option>
+                    <option value="EUA">Estados Unidos</option>
+                    <option value="Canada">Canada</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="contrasenia" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="contrasenia" name="contrasenia">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" value="1" id="terminos" name="terminos">
+                <label class="form-check-label" for="terminos">Aceptar terminos y condiciones</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    
+    </div>
+    
+    <script src="libs/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>
