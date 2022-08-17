@@ -9,43 +9,118 @@
 </head>
 <body>
 
-    <div class="container p-5" style="width: 50%;">
-        <form method="post" action="app/index.php">
-            <div class="mb-3">
-                <label for="correo" class="form-label">Correo Electronico</label>
-                <input type="email" class="form-control" id="correo" name="correo">
-                <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
-            </div>
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre">
-            </div>
-            <div class="mb-3">
-                <label for="celular" class="form-label">Número celular</label>
-                <input type="number" class="form-control" id="celular" name="numero">
-            </div>
-            <div class="mb-3">
-                <label for="pais" class="form-label">País</label>
-                <select class="form-select" id="pais" name="pais">
-                    <option selected>Seleccionar país</option>
-                    <option value="Mexico">México</option>
-                    <option value="EUA">Estados Unidos</option>
-                    <option value="Canada">Canada</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="contrasenia" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contrasenia" name="contrasenia">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" value="1" id="terminos" name="terminos">
-                <label class="form-check-label" for="terminos">Aceptar terminos y condiciones</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
-    
+    <div class="d-flex w-100 " >
+        <div class="container p-5" style="width: 25%;">
+            <form>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo Electronico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" required>
+                    <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="celular" class="form-label">Número celular</label>
+                    <input type="text" class="form-control" id="celular2" name="numero" required>
+                </div>
+                <div class="mb-3">
+                    <label for="pais" class="form-label">País</label>
+                    <select class="form-select" id="pais" name="pais" required>
+                        <option value="">Seleccionar pais</option>
+                        <option value="Mexico">México</option>
+                        <option value="EUA">Estados Unidos</option>
+                        <option value="Canada">Canada</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="contrasenia" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasenia" name="contrasenia" required>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="terminos" name="terminos">
+                    <label class="form-check-label" for="terminos">Aceptar terminos y condiciones</label>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn_submit">Guardar</button>
+            </form>
+        </div>
+
+        <div class="container p-5" style="width: 50%;">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Número celular</th>
+                    <th scope="col">País</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Terminos y condiciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla_body">
+                 
+                </tbody>
+              </table>
+        </div>
     </div>
+
     
     <script src="libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        var btn_submit = document.getElementById('btn_submit')
+        var tabla = document.getElementById("tabla_body")
+
+        btn_submit.addEventListener('click', function (event) {
+
+            let correo = document.getElementById("correo").value;
+            let nombre = document.getElementById("nombre").value;
+            let celular = document.getElementById("celular2").value;
+            let pais = document.getElementById("pais").value;
+            let contrasenia = document.getElementById("contrasenia").value;
+            var terminos = document.getElementById("terminos").checked;
+
+            if(terminos == 1){
+                terminos = "Aceptados"
+            }
+            else{
+                terminos = "Rechazados"
+            }
+
+            if(correo == "" || nombre == "" || celular == "" || pais == "" || contrasenia == ""){
+                alert("LLena todos los campos")
+            }
+            else{
+                tabla.innerHTML += `
+                <tr>
+                    <td scope="row">${correo}</td>
+                    <td>${nombre}</td>
+                    <td>${celular}</th>
+                    <td>${pais}</td>
+                    <td>${contrasenia}</td>
+                    <td>${terminos}</td>
+                </tr>
+                `
+            }
+          
+
+
+        }, false);
+
+          /* var pais =
+
+        select_pais.addEventListener('input', function (event) {
+
+            // if (event.target.id !== 'wizard') return;
+
+            console.log(event.target.value);
+
+
+        }, false);*/
+
+
+    </script>
 </body>
 </html>
