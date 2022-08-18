@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.ui import Select
+import time
 
 class Interface:
 
@@ -25,52 +26,29 @@ class Interface:
         if driver == 'edge':
             self.driver = webdriver.Edge()
                 
-    
-    def wait(self, time):
-        self.wait = WebDriverWait(self.driver, time)
+    def sleep(self, time):
+        self.time = time
         return self
 
-    '''def until(self, method):
-        self.wait = self.wait.until(method)
-        return self'''
-
-    def element(self, method, type, html):
-        if type == 'CSS':
-            type = By.CSS_SELECTOR
-        elif type == 'ID':
-            type = By.ID 
-        elif type == 'ID':
-            type = By.TAG_NAME 
-        self.wait = self.wait.until(method(type, html))
-
-
-    def css(self):
-        self.CSS = True
+    def web(self):
+        time.sleep(self.time)
+        self.wait = WebDriverWait(self.driver, self.time)
         return self
 
-    def id(self):
-        self.ID = True
-        return self
-    
-    def keys(self, html, keys):
-        if self.CSS:
-            self.wait = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, html))).send_keys(keys)
+    def element(self, event, by, selector, value = ""):
+        if by == 'css':
+            by = By.CSS_SELECTOR
+        elif by == 'xpath':
+            by = By.XPATH 
+        if event == 'keys':
+            return self.wait.until(EC.element_to_be_clickable((by, selector))).send_keys(value)
+        elif event == 'click':
+            return self.wait.until(EC.element_to_be_clickable((by, selector))).click()
+        elif event == "select":
+            s = Select(self.driver.find_element(by, selector))
+            return s.select_by_value(value)
+        elif event == "text":
+            return self.wait.until(EC.element_to_be_clickable((by, selector))).text
 
-        return self.wait
-
-    def click(self, html):
-        if self.CSS:
-            self.wait = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, html))).click()
-
-        return self.wait
-
-    def text(self, html):
-        if self.CSS:
-            self.wait = self.wait.until(EC.element_to_be_clickable(By.CSS_SELECTOR, html)).text
-            return self.wait
-         
-    
-    #def until
-    
     def open(self):
         self.driver.get(self.site)

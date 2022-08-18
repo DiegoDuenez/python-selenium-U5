@@ -1,10 +1,16 @@
 from app.Interface import Interface
 from selenium.webdriver.common.keys import Keys
+from app.Config import Config
 
-interface = Interface('chrome', 'http://localhost/selenium-toro/')
 
+path_config = "config.json"
+config = Config(path_config).load()
+
+
+interface = Interface(config['driver'], config['site'])
 interface.open()
+  
+for e in config['elements']:
+    interface.sleep(e['timesleep']).web().element(e['event'], e['by'], e['selector'], e['value'])
 
-# interface.wait(15).css().click('input#correo')
 
-interface.wait(5).css().keys('input#correo', "Hola" + Keys.TAB)

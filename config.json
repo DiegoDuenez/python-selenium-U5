@@ -1,0 +1,56 @@
+{
+    "driver":"chrome",
+    "site":"http://localhost/python-selenium-U5/",
+    "elements": [
+        {
+            "event":"keys",
+            "value":"diego@gmail.com",
+            "by":"xpath",
+            "selector":"/html/body/div/div[1]/form/div[1]/input",
+            "timesleep":2
+        },
+        {
+            "event":"keys",
+            "value":"diego",
+            "by":"css",
+            "selector":"input#nombre",
+            "timesleep":2
+        },
+        {
+            "event":"keys",
+            "value":"871223529",
+            "by":"css",
+            "selector":"input#celular",
+            "timesleep":2
+        },
+        {
+            "event":"select",
+            "value":"Canada",
+            "by":"css",
+            "selector":"select#pais",
+            "timesleep":2
+        },
+        {
+            "event":"keys",
+            "value":"123",
+            "by":"css",
+            "selector":"input#contrasenia",
+            "timesleep":2
+        },
+        {
+            "event":"click",
+            "value":"",
+            "by":"css",
+            "selector":"input#terminos",
+            "timesleep":2
+        },
+        {
+            "event":"click",
+            "value":"",
+            "by":"css",
+            "selector":"button#btn_submit",
+            "timesleep":2
+        }
+    ]
+    
+}
